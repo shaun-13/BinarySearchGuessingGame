@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center|top">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Choose a number from"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <TextView
+            android:id="@+id/tv_lowerBound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="0"
+            android:textSize="30sp"
+            />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="18dp"
+            android:text="to"
+            android:textSize="30sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_upperBound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_marginTop="16dp"
+            android:text="100"
+            android:textSize="30sp"
+            />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_userGuess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:ems="15"
+        android:hint="Choose a number!"
+        android:inputType="number"
+        android:text="3" />
+
+    <Button
+        android:id="@+id/btn_submitNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:layout_margin="10sp"
+        android:onClick="submitNumber"
+        />
+
+    <Button
+        android:id="@+id/btn_endGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Game"
+        android:layout_margin="10sp"
+        android:onClick="endGame"
+
+        />
+
+</LinearLayout>
