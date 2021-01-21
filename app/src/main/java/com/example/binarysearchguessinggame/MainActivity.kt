@@ -3,13 +3,15 @@ package com.example.binarysearchguessinggame
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import kotlin.random.Random
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
-    private var currentNum = 0
+    private var numberToGuess = 0
     private var lowerBound = 0
     private var upperBound = 100
 
@@ -21,32 +23,34 @@ class MainActivity : AppCompatActivity() {
 
     private fun pickRandomNumber() {
         val randNum = Random.nextInt(0,101)
-        this.currentNum = randNum
-        return Toast.makeText(this, "Current Number:" + this.currentNum, Toast.LENGTH_LONG).show()
+        this.numberToGuess = randNum
+//        return Toast.makeText(this, "Current Number:" + this.currentNum, Toast.LENGTH_LONG).show()
     }
 
     fun submitNumber(view: View) {
         val userSubmittedNum = findViewById<EditText>(R.id.et_userGuess).text.toString().toInt()
         when {
             isNumberValid(userSubmittedNum) == -1 -> {
-                return Toast.makeText(this, "Enter a number more than " + this.lowerBound, Toast.LENGTH_LONG).show()
+                return Toast.makeText(this, "Enter a number more than $lowerBound", Toast.LENGTH_LONG).show()
             }
             isNumberValid(userSubmittedNum) == 0 -> {
-                return Toast.makeText(this, "Enter a number less than " + this.upperBound, Toast.LENGTH_LONG).show()
+                return Toast.makeText(this, "Enter a number less than $upperBound", Toast.LENGTH_LONG).show()
             }
             else -> {
                 return when {
                     isNumberCorrect(userSubmittedNum) == 1 -> {
                         // correct answer, display success message
-                        Toast.makeText(this, "Correct! The number is " + this.currentNum, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Correct! The number is $numberToGuess", Toast.LENGTH_LONG).show()
                     }
                     isNumberCorrect(userSubmittedNum) == -1 -> {
                         // user guessed a number lower than lowerBound
-                        Toast.makeText(this, "Incorrect! Choose a number higher than " + this.lowerBound, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,
+                            "Incorrect! Choose a number higher than $lowerBound", Toast.LENGTH_LONG).show()
                     }
                     else ->
                         // user guessed a number lower than lowerBound
-                        Toast.makeText(this, "Incorrect! Choose a number lower than " + this.upperBound, Toast.LENGTH_LONG).show()
+                        Toast.makeText(this,
+                            "Incorrect! Choose a number lower than $upperBound", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -54,21 +58,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun isNumberCorrect(userSubmittedNum: Int): Int {
         return when {
-            userSubmittedNum == this.currentNum -> {
+            userSubmittedNum == numberToGuess -> {
+//                submitButton.isEnabled = false
                 resetUserNumberField()
                 1
             }
-            userSubmittedNum < this.currentNum -> {
-                this.lowerBound = userSubmittedNum
+            userSubmittedNum < this.numberToGuess -> {
+                lowerBound = userSubmittedNum
                 val lowerBoundText = findViewById<TextView>(R.id.tv_lowerBound)
-                lowerBoundText.text = this.lowerBound.toString()
+                lowerBoundText.text = "$lowerBound"
                 resetUserNumberField()
                 -1
             }
             else -> {
-                this.upperBound = userSubmittedNum
+                upperBound = userSubmittedNum
                 val upperBoundText = findViewById<TextView>(R.id.tv_upperBound)
-                upperBoundText.text = this.upperBound.toString()
+                upperBoundText.text = "$upperBound"
                 resetUserNumberField()
                 0
             }
@@ -76,10 +81,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun isNumberValid(userSubmittedNum: Int): Int {
-        if(userSubmittedNum < this.lowerBound) {
+        if(userSubmittedNum < lowerBound) {
             resetUserNumberField()
             return -1
-        } else if (userSubmittedNum > this.upperBound) {
+        } else if (userSubmittedNum > upperBound) {
             resetUserNumberField()
             return 0
         }
@@ -91,7 +96,7 @@ class MainActivity : AppCompatActivity() {
         userNumberField.setText("")
     }
 
-    fun endGame(view: View) {
+    fun restartGame(view: View) {
         // reset user input field
         resetUserNumberField()
 
@@ -103,5 +108,11 @@ class MainActivity : AppCompatActivity() {
 
         // choose a new random number
         pickRandomNumber()
+        Toast.makeText(this, "Game has restarted!", Toast.LENGTH_SHORT).show()
+    }
+
+    fun exitApp(view: View) {
+        // Exits the game app
+        exitProcess(0)
     }
 }

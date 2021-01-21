@@ -63,26 +63,31 @@
         android:layout_margin="10sp"
         android:ems="15"
         android:hint="Choose a number!"
-        android:inputType="number"
-        android:text="3" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btn_submitNum"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="Submit"
         android:layout_margin="10sp"
+        android:clickable="false"
         android:onClick="submitNumber"
-        />
+        android:text="Submit" />
+
+    <Button
+        android:id="@+id/btn_restart"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:onClick="restartGame"
+        android:text="Restart" />
 
     <Button
         android:id="@+id/btn_endGame"
-        android:layout_width="wrap_content"
+        android:layout_width="108dp"
         android:layout_height="wrap_content"
-        android:text="End Game"
         android:layout_margin="10sp"
-        android:onClick="endGame"
-
-        />
+        android:onClick="exitApp"
+        android:text="Exit" />
 
 </LinearLayout>
