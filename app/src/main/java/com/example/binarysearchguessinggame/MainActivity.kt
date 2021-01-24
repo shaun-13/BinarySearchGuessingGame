@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     private fun pickRandomNumber() {
         val randNum = Random.nextInt(0,101)
         this.numberToGuess = randNum
-//        return Toast.makeText(this, "Current Number:" + this.currentNum, Toast.LENGTH_LONG).show()
     }
 
     fun submitNumber(view: View) {
@@ -59,7 +58,6 @@ class MainActivity : AppCompatActivity() {
     private fun isNumberCorrect(userSubmittedNum: Int): Int {
         return when {
             userSubmittedNum == numberToGuess -> {
-//                submitButton.isEnabled = false
                 resetUserNumberField()
                 1
             }
