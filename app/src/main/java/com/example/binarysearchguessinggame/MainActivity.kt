@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private var numberToGuess = 0
     private var lowerBound = 0
     private var upperBound = 100
+    private var numberOfGuesses = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +23,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pickRandomNumber() {
-        val randNum = Random.nextInt(0,101)
+        val randNum = Random.nextInt(101)
         this.numberToGuess = randNum
     }
 
     fun submitNumber(view: View) {
         val userSubmittedNum = findViewById<EditText>(R.id.et_userGuess).text.toString().toInt()
+        numberOfGuesses++
         when {
             isNumberValid(userSubmittedNum) == -1 -> {
                 return Toast.makeText(this, "Enter a number more than $lowerBound", Toast.LENGTH_LONG).show()
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 return when {
                     isNumberCorrect(userSubmittedNum) == 1 -> {
                         // correct answer, display success message
-                        Toast.makeText(this, "Correct! The number is $numberToGuess", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Correct! The number is $numberToGuess! You took $numberOfGuesses guesses!", Toast.LENGTH_LONG).show()
                     }
                     isNumberCorrect(userSubmittedNum) == -1 -> {
                         // user guessed a number lower than lowerBound
@@ -94,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         userNumberField.setText("")
     }
 
+    // to restart the whole game
     fun restartGame(view: View) {
         // reset user input field
         resetUserNumberField()
@@ -103,6 +106,9 @@ class MainActivity : AppCompatActivity() {
         upperBoundText.text = "100"
         val lowerBoundText = findViewById<TextView>(R.id.tv_lowerBound)
         lowerBoundText.text = "0"
+
+        lowerBound = 0
+        upperBound = 100
 
         // choose a new random number
         pickRandomNumber()
