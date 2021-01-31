@@ -32,10 +32,10 @@ class MainActivity : AppCompatActivity() {
         numberOfGuesses++
         when {
             isNumberValid(userSubmittedNum) == -1 -> {
-                return Toast.makeText(this, "Enter a number more than $lowerBound", Toast.LENGTH_LONG).show()
+                return Toast.makeText(this, "Enter a number more than $lowerBound", Toast.LENGTH_SHORT).show()
             }
             isNumberValid(userSubmittedNum) == 0 -> {
-                return Toast.makeText(this, "Enter a number less than $upperBound", Toast.LENGTH_LONG).show()
+                return Toast.makeText(this, "Enter a number less than $upperBound", Toast.LENGTH_SHORT).show()
             }
             else -> {
                 return when {
@@ -46,12 +46,13 @@ class MainActivity : AppCompatActivity() {
                     isNumberCorrect(userSubmittedNum) == -1 -> {
                         // user guessed a number lower than lowerBound
                         Toast.makeText(this,
-                            "Incorrect! Choose a number higher than $lowerBound", Toast.LENGTH_LONG).show()
+                            "Incorrect! Choose a number higher than $lowerBound", Toast.LENGTH_SHORT).show()
+
                     }
                     else ->
                         // user guessed a number lower than lowerBound
                         Toast.makeText(this,
-                            "Incorrect! Choose a number lower than $upperBound", Toast.LENGTH_LONG).show()
+                            "Incorrect! Choose a number lower than $upperBound", Toast.LENGTH_SHORT).show()
                 }
             }
         }
