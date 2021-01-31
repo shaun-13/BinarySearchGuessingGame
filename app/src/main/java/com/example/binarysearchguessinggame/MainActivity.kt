@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(this, "Correct! The number is $numberToGuess! You took $numberOfGuesses guesses!", Toast.LENGTH_LONG).show()
                         val submitBtn = findViewById<Button>(R.id.btn_submitNum)
                         submitBtn.isEnabled = false
-                        
+
                     }
                     isNumberCorrect(userSubmittedNum) == -1 -> {
                         // user guessed a number lower than lowerBound
@@ -104,6 +104,10 @@ class MainActivity : AppCompatActivity() {
     fun restartGame(view: View) {
         // reset user input field
         resetUserNumberField()
+
+        // enable the submitBtn
+        val submitBtn = findViewById<Button>(R.id.btn_submitNum)
+        submitBtn.isEnabled = true
 
         // reset upper and lower bound text to 100 and 0 respectively
         val upperBoundText = findViewById<TextView>(R.id.tv_upperBound)
