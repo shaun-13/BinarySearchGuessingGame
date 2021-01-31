@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
                     isNumberCorrect(userSubmittedNum) == 1 -> {
                         // correct answer, display success message
                         Toast.makeText(this, "Correct! The number is $numberToGuess! You took $numberOfGuesses guesses!", Toast.LENGTH_LONG).show()
+                        val submitBtn = findViewById<Button>(R.id.btn_submitNum)
+                        submitBtn.isEnabled = false
+                        
                     }
                     isNumberCorrect(userSubmittedNum) == -1 -> {
                         // user guessed a number lower than lowerBound
